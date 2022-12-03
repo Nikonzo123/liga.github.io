@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styl.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <header>
+            <h1 id="round">Round I</h1>
+            <h2 id="head">1/64</h2>
+        </header>
+        <div id="main">
+            <div id="I">
+                <button onClick="One()"><img id="IOne" src="0" height="500" /></button>
+            </div>
+            <div id="II">
+                <button onClick="Two()"><img id="ITwo" src="0" height="500"/></button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <center id="final"></center>
+            </div>
+        </div>
+
+    </body>
+    <script>
+        var myArray = new Array;
+        var FolderCount = 128;
+        for (var i = 0; i < FolderCount; i++)
+        {
+            myArray[i] = i + 1;
+        }
+        var myArray2 = new Array;
+        var ClearArray;
+        var pom = 0;
+        var max = myArray.length;
+        var count = 0;
+        var round = 1;
+        var image = 1;
+
+        Randomize();
+        Start();
+            
+        function One()
+        {
+            myArray2[count] = myArray[pom];
+            AddPom();
+        }
+        function Two()
+        {
+            myArray2[count] = myArray[pom+1];
+            AddPom();
+        }
+        function AddPom()
+        {
+            pom = pom + 2;
+            count++;
+            image++;
+            Check();
+            Start();
+        }
+        function Check()
+        {
+            if(pom == max)
+                Reset();
+        }
+        function Reset()
+        {
+            pom = 0;
+            max = max / 2;
+            round++;
+            image = 1;
+            if(max  == 1)
+                End();
+            count = 0;
+            myArray = myArray2;
+            myArray2 = [];
+            Start();
+        }
+        function End()
+        {
+            document.getElementById('main').remove();
+            var img = document.createElement('img');
+            img.src = "config/" + myArray2[pom] + ".png";
+            document.getElementById('final').appendChild(img);
+            document.getElementById("head").innerHTML = "Wygrywa:";
+            document.getElementById("round").innerHTML = "";
+        }
+        function Start()
+        {
+            document.getElementById("IOne").src = "config/" + myArray[pom] + ".png";
+            document.getElementById("ITwo").src = "config/" + myArray[pom + 1] + ".png";
+            document.getElementById("round").innerHTML = "Runda " + round;
+            document.getElementById("head").innerHTML = image + "/" + max/2;
+        }
+        function Randomize()
+        {
+            for (var i = 0; i < FolderCount; i++)
+            {
+                var rand = Math.floor(Math.random() * FolderCount);
+                var help = myArray[i]
+                myArray[i] = myArray[rand];
+                myArray[rand] = help;
+            }
+        }
+    </script>
+</html>

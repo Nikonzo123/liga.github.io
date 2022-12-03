@@ -1,0 +1,47 @@
+header {
+	width: 100%;
+	height: 150px;
+	float: left;
+}
+#I {
+	width: 50%;
+	height: 600px;
+	background-color: grey;
+	float: left;
+	text-align: center;
+}
+#II {
+	width: 50%;
+	height: 600px;
+	background-color: grey;
+	float: left;
+	text-align: center;
+}
+#finale {
+	width: 50%;
+	height: 800px;
+	background-color: grey;
+	float: left;
+	padding: 30px;
+}
+button 
+{
+	text-align: center;
+	background-color: grey;
+	border: 0px;
+}
+body
+{
+	background-color: dimgray;
+}
+h1, h2
+{
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+}
+img
+{
+	height: 500px;
+}
+
